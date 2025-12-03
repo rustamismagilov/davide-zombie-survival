@@ -1,12 +1,5 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-class AmmoSlot
-{
-    public AmmoType ammoType;
-    public int ammoAmount;
-}
 
 public class Ammo : MonoBehaviour
 {

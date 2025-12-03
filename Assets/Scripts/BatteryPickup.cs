@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BatteryPickup : MonoBehaviour
 {
-    [SerializeField] float restoreAngle = 50f;
+    [SerializeField] float restoreAngle = 20f;
     [SerializeField] float restoreIntensity = 20f;
 
     private void OnTriggerEnter(Collider other)

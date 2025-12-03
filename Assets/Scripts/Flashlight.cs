@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour
@@ -6,6 +7,7 @@ public class Flashlight : MonoBehaviour
     [SerializeField] float angleDecay = 1f;
     [SerializeField] float minAngle = 40f;
     [SerializeField] float deltaSpotAngle = 5f;
+    [SerializeField] TextMeshProUGUI flashlightTextbox;
 
     Light myLight;
 
@@ -26,6 +28,13 @@ public class Flashlight : MonoBehaviour
     {
         DecreaseLightAngle();
         DecreaseLightIntensity();
+        DisplayFlashlight();
+    }
+
+    private void DisplayFlashlight()
+    {
+        int intensityValue = Mathf.RoundToInt(myLight.intensity);
+        flashlightTextbox.text = $"Flashlight: {intensityValue:D3}%";
     }
 
     void DecreaseLightAngle()

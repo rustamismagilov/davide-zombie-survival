@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,10 +6,12 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] float chaseRange = 10f;
     [SerializeField] float turnSpeed = 5f;
+    [SerializeField] float stuckAfterDamageTime = 0.25f;
 
     Transform target;
 
     NavMeshAgent navMeshAgent;
+    Animator animator;
     EnemyHealth enemyHealth;
     EnemyAttack enemyAttack;
 
@@ -20,6 +23,7 @@ public class EnemyController : MonoBehaviour
     {
         target = FindFirstObjectByType<PlayerHealth>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         enemyHealth = GetComponent<EnemyHealth>();
         enemyAttack = GetComponent<EnemyAttack>();
     }
@@ -47,15 +51,30 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void OnDamageTaken()
-    {
-        isProvoked = true;
-    }
-
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
+    }
+
+    IEnumerator DisableAgentRoutine(float time)
+    {
+        navMeshAgent.enabled = false;
+        yield return new WaitForSeconds(time);
+        navMeshAgent.enabled = true;
+    }
+
+    public void OnDamageTaken()
+    {
+        isProvoked = true;
+
+        //animator.ResetTrigger("Hit");
+        //animator.SetTrigger("Hit");
+
+        if (navMeshAgent && navMeshAgent.enabled)
+        {
+            StartCoroutine(DisableAgentRoutine(stuckAfterDamageTime));
+        }
     }
 
     void EngageTarget()
@@ -76,13 +95,13 @@ public class EnemyController : MonoBehaviour
 
     void ChaseTarget()
     {
-        if (navMeshAgent && navMeshAgent.enabled)
+        if (navMeshAgent && navMeshAgent.enabled && target)
             navMeshAgent.SetDestination(target.position);
     }
 
     void AttackTarget()
     {
-        GetComponentInChildren<Animator>().SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         //Debug.Log(name + " has seeked and is destroying " + target.name);
     }
 
@@ -98,7 +117,7 @@ public class EnemyController : MonoBehaviour
         Vector3 averageSpeed = new Vector3(navMeshAgent.velocity.x, 0, navMeshAgent.velocity.z);
         float speed = averageSpeed.magnitude;
 
-        GetComponentInChildren<Animator>().SetFloat("MoveSpeed", speed);
+        animator.SetFloat("MoveSpeed", speed);
     }
 }
 

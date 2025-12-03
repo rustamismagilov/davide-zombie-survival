@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5031138201564578535}
   - component: {fileID: 3138353935380119817}
   - component: {fileID: 8631197193405168952}
+  - component: {fileID: 6319379196181191412}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -242,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  healthTextbox: {fileID: 0}
 --- !u!114 &3138353935380119817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5007e83c7406a94093396a6734e22d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodSplattersCanvas: {fileID: 0}
   bloodSplatterImages:
   - {fileID: 0}
   - {fileID: 0}
@@ -284,6 +285,59 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   effectDuration: 0.3
+--- !u!114 &6319379196181191412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737447780200794397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &3450758252475497180
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +514,7 @@ GameObject:
   - component: {fileID: 1353136291779253909}
   - component: {fileID: 704020150848311784}
   - component: {fileID: 8546276729303555231}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -727,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8dfb0e2cbc2084aa30ef03941bb726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponIndex: 0
+  currentWeaponIndex: 1
 --- !u!1 &8039845806175732483
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +920,7 @@ MonoBehaviour:
   angleDecay: 1
   minAngle: 40
   deltaSpotAngle: 5
+  flashlightTextbox: {fileID: 0}
 --- !u!1001 &1261268659495829021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,7 +959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5786097810451525583, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5836183803064680627, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Layer
@@ -965,6 +1020,14 @@ PrefabInstance:
     - target: {fileID: 6559362985659250037, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602789456199049287, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602789456199049287, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.035
       objectReference: {fileID: 0}
     - target: {fileID: 6740514283268044895, guid: 260ff1508afea5241b6511d8fbe92201, type: 3}
       propertyPath: m_Enabled
@@ -1043,18 +1106,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 2012383917598064015}
   bulletImpact: {fileID: 3073334848392643486, guid: ea1779f85d07b214985ad42a0aed6adb, type: 3}
+  hitMode: 0
   fireMode: 1
   fireRate: 0.2
   range: 50
   damage: 15
   defaultZoom: 40
-  aimZoom: 10
-  crossHairCanvas: {fileID: 0}
+  aimZoom: 15
+  crossHair: {fileID: 0}
+  crossHairHit: {fileID: 0}
+  showHitTime: 0.2
   ammoSlot: {fileID: 3138353935380119817}
   ammoType: 2
   ammoPerShoot: 1
   ammoTextbox: {fileID: 0}
+  canAim: 1
   canShoot: 1
+  canReload: 1
 --- !u!114 &1040079982010630565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,7 +1285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 247
+      value: 759
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_Name
@@ -1465,7 +1533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6440599648175510709, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1519,18 +1587,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 0}
   bulletImpact: {fileID: 0}
+  hitMode: 1
   fireMode: 0
   fireRate: 1
   range: 2
   damage: 50
   defaultZoom: 40
   aimZoom: 35
-  crossHairCanvas: {fileID: 0}
+  crossHair: {fileID: 0}
+  crossHairHit: {fileID: 0}
+  showHitTime: 0.2
   ammoSlot: {fileID: 0}
   ammoType: 0
   ammoPerShoot: 0
   ammoTextbox: {fileID: 0}
+  canAim: 1
   canShoot: 1
+  canReload: 1
 --- !u!4 &1005510103077001022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5920628141422906895, guid: c1ab9abedc9d80f4a9109fe99b4ea8d4, type: 3}
@@ -1651,6 +1724,10 @@ PrefabInstance:
     - target: {fileID: 7272562916413669774, guid: 8dd42cfce9fbf934e97313e180757b63, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7616509694401225607, guid: 8dd42cfce9fbf934e97313e180757b63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1851,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8116155075977294907, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8502960412684221905, guid: a35b8c32acba1334b9b31dfe8cdbc9be, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -1928,18 +2009,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 2881401568596087181}
   bulletImpact: {fileID: 3073334848392643486, guid: ea1779f85d07b214985ad42a0aed6adb, type: 3}
+  hitMode: 0
   fireMode: 0
-  fireRate: 0.7
+  fireRate: 0.5
   range: 30
   damage: 20
   defaultZoom: 40
   aimZoom: 30
-  crossHairCanvas: {fileID: 0}
+  crossHair: {fileID: 0}
+  crossHairHit: {fileID: 0}
+  showHitTime: 0.2
   ammoSlot: {fileID: 3138353935380119817}
   ammoType: 1
   ammoPerShoot: 1
   ammoTextbox: {fileID: 0}
+  canAim: 1
   canShoot: 1
+  canReload: 1
 --- !u!114 &7049524369988319896
 MonoBehaviour:
   m_ObjectHideFlags: 0

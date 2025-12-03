@@ -1,18 +1,16 @@
+using System.Collections;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
-public enum FireMode
-{
-    Single,
-    Auto
-}
 
 public class Weapon : MonoBehaviour
 {
     [Header("Shoot / Fire")]
     [SerializeField] ParticleSystem muzzleFlash;    // particle for the shooting
     [SerializeField] GameObject bulletImpact;    // target impact effect
+    [SerializeField] HitMode hitMode = HitMode.Automatic;
     [SerializeField] FireMode fireMode = FireMode.Single;
     [SerializeField] float fireRate = 0.1f;
     [SerializeField] float range = 100f;
@@ -21,7 +19,9 @@ public class Weapon : MonoBehaviour
     [Header("Aim / Zoom")]
     [SerializeField] float defaultZoom = 40f;
     [SerializeField] float aimZoom = 30f;
-    [SerializeField] Canvas crossHairCanvas;
+    [SerializeField] Image crossHair;
+    [SerializeField] Image crossHairHit;
+    [SerializeField] float showHitTime = 0.2f;
 
     [Header("Ammo")]
     [SerializeField] Ammo ammoSlot;    // ammo slot
@@ -30,21 +30,26 @@ public class Weapon : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoTextbox;
 
     CinemachineCamera cinemachineCamera;
-    CinemachineImpulseSource impulseSource;    // impulse for recoil
+    CinemachineImpulseSource cinemachineImpulseSource;    // impulse for recoil
     WeaponMagazine weaponMagazine;    // magazine ammo
     Animator animator;
 
+    [HideInInspector] public bool canAim = true;
     [HideInInspector] public bool canShoot = true;
+    [HideInInspector] public bool canReload = true;
 
     float nextFireTime = 0f;
     bool isAiming = false;
+    bool isReloading = false;
     float currentWeight = 0f;
     float aimTransitionSpeed = 5f;
+
+    Coroutine showHitCoroutine;
 
     void Awake()
     {
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         weaponMagazine = GetComponent<WeaponMagazine>();
         animator = GetComponent<Animator>();
     }
@@ -52,13 +57,14 @@ public class Weapon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        crossHairHit.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         // aim logig
-        if (Input.GetMouseButton(1))
+        if (canAim && Input.GetMouseButton(1))
         {
             isAiming = true;
         }
@@ -69,23 +75,34 @@ public class Weapon : MonoBehaviour
         UpdateAim();
 
         // shooting logic
-        if (fireMode == FireMode.Single && Input.GetButtonDown("Fire1"))
+        if (canShoot && !isReloading)
         {
-            Shoot();
-        }
-        if (fireMode == FireMode.Auto && Input.GetButton("Fire1"))
-        {
-            Shoot();
+            if (fireMode == FireMode.Single && Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+            if (fireMode == FireMode.Auto && Input.GetButton("Fire1"))
+            {
+                Shoot();
+            }
         }
 
         // reload logic
-        if (Input.GetKeyDown(KeyCode.R))
+        if (canReload && !isReloading && Input.GetKeyDown(KeyCode.R))
         {
-            Reload();
+            StartCoroutine(Reload());
         }
 
         // ammo
         DisplayAmmo();
+    }
+
+    private void OnDisable()
+    {
+        nextFireTime = 0f;
+        isAiming = false;
+        isReloading = false;
+        currentWeight = 0f;
     }
 
     void UpdateAim()
@@ -96,13 +113,13 @@ public class Weapon : MonoBehaviour
         if (isAiming)
         {
             targetWeight = 1f;
-            crossHairCanvas.gameObject.SetActive(false);
+            crossHair.gameObject.SetActive(false);
             targetAimZoom = aimZoom;
         }
         else
         {
             targetWeight = 0f;
-            crossHairCanvas.gameObject.SetActive(true);
+            crossHair.gameObject.SetActive(true);
             targetAimZoom = defaultZoom;
         }
 
@@ -114,9 +131,6 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
-        // check if it can shoot
-        if (!canShoot) return;
-
         // check fire rate
         if (Time.time < nextFireTime) return;
 
@@ -134,24 +148,54 @@ public class Weapon : MonoBehaviour
         //animator.Play("Gun_shoot", 0, 0f);
         animator.ResetTrigger("shoot");
         animator.SetTrigger("shoot");
-        ProcessRaycast();
-        ProcessRecoil();
-        PlayMuzzleFlash();
 
+        // check hit
+        if (hitMode == HitMode.Automatic)
+        {
+            ShootHit();
+        }
+
+        // fire rate
         nextFireTime = Time.time + fireRate;
     }
 
-    void Reload()
+    void ShootHit()
     {
-        if (ammoType != AmmoType.None)
-        {
-            if (ammoSlot.GetCurrentAmmo(ammoType) <= 0) return;
+        ProcessRaycast();
+        ProcessRecoil();
+        PlayMuzzleFlash();
+    }
 
-            int ammoToReload = weaponMagazine.GetCapacity() - weaponMagazine.GetCurrentAmmo();
-            if (ammoSlot.GetCurrentAmmo(ammoType) - ammoToReload < 0) ammoToReload = ammoSlot.GetCurrentAmmo(ammoType);
-            ammoSlot.ReduceCurrentAmmo(ammoType, ammoToReload);
-            weaponMagazine.ReloadAmmo(ammoToReload);
-        }
+    IEnumerator Reload()
+    {
+        if (ammoType == AmmoType.None) yield break;
+
+        int currentAmmo = ammoSlot.GetCurrentAmmo(ammoType);
+        if (currentAmmo <= 0) yield break;
+
+        int ammoToReload = weaponMagazine.GetCapacity() - weaponMagazine.GetCurrentAmmo();
+        if (ammoToReload <= 0) yield break;
+
+
+        int beforeHash = animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+
+        animator.ResetTrigger("reload");
+        animator.SetTrigger("reload");
+        isReloading = true;
+
+        // wait the end of the animation before
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).fullPathHash != beforeHash);
+
+        yield return null; // Wait one frame for the Animator to process the trigger
+        yield return new WaitWhile(() => animator.IsInTransition(0));
+        yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f);
+
+
+        if (currentAmmo - ammoToReload < 0) ammoToReload = ammoSlot.GetCurrentAmmo(ammoType);
+        ammoSlot.ReduceCurrentAmmo(ammoType, ammoToReload);
+        weaponMagazine.ReloadAmmo(ammoToReload);
+
+        isReloading = false;
     }
 
     void ProcessRaycast()
@@ -160,7 +204,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(cinemachineCamera.transform.position, cinemachineCamera.transform.forward, out hit, range))
         {
-            Debug.Log("Hit this thing: " + hit.transform.name);
+            //Debug.Log("Hit this thing: " + hit.transform.name);
 
             // if i hit something
             CreateHitImpact(hit);
@@ -169,16 +213,25 @@ public class Weapon : MonoBehaviour
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
             if (target != null)
             {
+                if (showHitCoroutine != null) StopCoroutine(showHitCoroutine);
+                showHitCoroutine = StartCoroutine(ShowHit());
                 target.TakeDamage(damage);
             }
         }
     }
 
+    IEnumerator ShowHit()
+    {
+        crossHairHit.gameObject.SetActive(true);
+        yield return new WaitForSeconds(showHitTime);
+        crossHairHit.gameObject.SetActive(false);
+    }
+
     void ProcessRecoil()
     {
-        if (impulseSource)
+        if (cinemachineImpulseSource)
         {
-            impulseSource.GenerateImpulse();
+            cinemachineImpulseSource.GenerateImpulse();
         }
     }
 
@@ -209,7 +262,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            ammoTextbox.text = "";
+            ammoTextbox.text = "-";
         }
     }
 }

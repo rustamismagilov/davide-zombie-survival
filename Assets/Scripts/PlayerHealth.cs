@@ -1,9 +1,11 @@
-using StarterAssets;
+using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float health = 100f;
+    [SerializeField] TextMeshProUGUI healthTextbox;
 
     SceneLoader sceneLoader;
 
@@ -11,16 +13,15 @@ public class PlayerHealth : MonoBehaviour
     {
         sceneLoader = FindFirstObjectByType<SceneLoader>();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        DisplayHealth();
+    }
 
+    private void DisplayHealth()
+    {
+        healthTextbox.text = $"Health: {health}";
     }
 
     public void TakeDamage(float damage)

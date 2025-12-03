@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  attackRange: 2
 --- !u!114 &6325966219781044349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseRange: 10
   turnSpeed: 5
+  stuckAfterDamageTime: 0.25
 --- !u!114 &5672840007934967399
 MonoBehaviour:
   m_ObjectHideFlags: 0

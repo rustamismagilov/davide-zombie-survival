@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
-    [SerializeField] Canvas bloodSplattersCanvas;
     [SerializeField] List<GameObject> bloodSplatterImages;
     [SerializeField] float effectDuration = 0.3f;
 
+    CinemachineImpulseSource cinemachineImpulseSource;    // impulse for hit
+
     void Awake()
     {
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+
+        ResetHit();
         DisableImages();
     }
 
@@ -33,9 +38,26 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
+    void ResetHit()
+    {
+        if (cinemachineImpulseSource)
+        {
+            CinemachineImpulseManager.Instance.Clear();
+        }
+    }
+
     public void ShowDamageImpact()
     {
+        ProcessHit();
         StartCoroutine(ShowBloodSplatters());
+    }
+
+    void ProcessHit()
+    {
+        if (cinemachineImpulseSource)
+        {
+            cinemachineImpulseSource.GenerateImpulse();
+        }
     }
 
     IEnumerator ShowBloodSplatters()
