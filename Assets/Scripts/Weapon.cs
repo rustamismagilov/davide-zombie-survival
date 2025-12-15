@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float fireRate = 0.1f;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 20f;
+    [SerializeField] float impulseForce = 10f;
 
     [Header("Aim / Zoom")]
     [SerializeField] float defaultZoom = 40f;
@@ -208,6 +209,14 @@ public class Weapon : MonoBehaviour
 
             // if i hit something
             CreateHitImpact(hit);
+
+            // if rigidbody 
+            if (hit.rigidbody != null)
+            {
+                Debug.Log("ci");
+                Vector3 forceDirection = cinemachineCamera.transform.forward;
+                hit.rigidbody.AddForce(forceDirection * impulseForce, ForceMode.Impulse);
+            }
 
             // if has helth
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();

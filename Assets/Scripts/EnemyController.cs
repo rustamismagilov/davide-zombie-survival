@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -57,24 +56,12 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseRange);
     }
 
-    IEnumerator DisableAgentRoutine(float time)
-    {
-        navMeshAgent.enabled = false;
-        yield return new WaitForSeconds(time);
-        navMeshAgent.enabled = true;
-    }
-
     public void OnDamageTaken()
     {
         isProvoked = true;
 
-        //animator.ResetTrigger("Hit");
-        //animator.SetTrigger("Hit");
-
-        if (navMeshAgent && navMeshAgent.enabled)
-        {
-            StartCoroutine(DisableAgentRoutine(stuckAfterDamageTime));
-        }
+        animator.ResetTrigger("Hit");
+        animator.SetTrigger("Hit");
     }
 
     void EngageTarget()

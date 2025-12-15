@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  SprintSpeed: 6
+  SprintSpeed: 7
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 1.2
@@ -208,9 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushLayers:
     serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
+    m_Bits: 129
+  canPush: 1
+  strength: 3
 --- !u!114 &7865237920655899415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,6 +1111,7 @@ MonoBehaviour:
   fireRate: 0.2
   range: 50
   damage: 15
+  impulseForce: 5
   defaultZoom: 40
   aimZoom: 15
   crossHair: {fileID: 0}
@@ -1592,6 +1593,7 @@ MonoBehaviour:
   fireRate: 1
   range: 2
   damage: 50
+  impulseForce: 5
   defaultZoom: 40
   aimZoom: 35
   crossHair: {fileID: 0}
@@ -1649,6 +1651,10 @@ PrefabInstance:
       propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 2012383917598064015}
+    - target: {fileID: 2464475600570041086, guid: 8dd42cfce9fbf934e97313e180757b63, type: 3}
+      propertyPath: impulseForce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3179557767797655554, guid: 8dd42cfce9fbf934e97313e180757b63, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -2014,6 +2020,7 @@ MonoBehaviour:
   fireRate: 0.5
   range: 30
   damage: 20
+  impulseForce: 10
   defaultZoom: 40
   aimZoom: 30
   crossHair: {fileID: 0}
