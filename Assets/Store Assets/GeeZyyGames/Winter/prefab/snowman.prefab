@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7452332685882248568}
   - component: {fileID: 4650237499117648306}
   - component: {fileID: -2407855138743041979}
+  - component: {fileID: -247898695164391570}
   m_Layer: 0
   m_Name: snowman
   m_TagString: Untagged
@@ -112,3 +113,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7079256240385013130, guid: 38fb6abf6d3178142a148e8e2ba1fe19, type: 3}
+--- !u!205 &-247898695164391570
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595532847618201703}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.021302909, y: 0.60705054, z: -0.00064718723}
+  m_Size: 1.2474146
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4650237499117648306}
+  m_Enabled: 1

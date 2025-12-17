@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4603094223535130527}
   - component: {fileID: 1730946343194997589}
   - component: {fileID: 2062892213536247430}
+  - component: {fileID: 6614892217441943236}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -109,3 +110,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1556410543170635569, guid: 85e779c3133bc4d4a86b23e4dea20d8f, type: 3}
+--- !u!205 &6614892217441943236
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217706562209813120}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.00000029802322, y: 0.80411875, z: -0.00000020861626}
+  m_Size: 1.6359074
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1730946343194997589}
+  m_Enabled: 1

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7959915118993276474}
   - component: {fileID: 5301787797890927344}
   - component: {fileID: -6043324000665695265}
+  - component: {fileID: 1892923123310742276}
   m_Layer: 0
   m_Name: obstacle
   m_TagString: Untagged
@@ -111,3 +112,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -530522622437472994, guid: 084d850f9ab4f1f409ae783ed5bfc5b1, type: 3}
+--- !u!205 &1892923123310742276
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950178256373525285}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0.28909916, z: 0.0000008940697}
+  m_Size: 0.5861045
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5301787797890927344}
+  m_Enabled: 1

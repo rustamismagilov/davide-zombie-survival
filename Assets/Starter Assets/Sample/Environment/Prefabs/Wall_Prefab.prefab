@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8497650616581704069}
   - component: {fileID: 9105854698657379725}
   - component: {fileID: 1277700310800588604}
+  - component: {fileID: 8058797139941035596}
   m_Layer: 0
   m_Name: Wall_Prefab
   m_TagString: Untagged
@@ -60,6 +61,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -127,3 +131,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.25, y: 2.0055175, z: 3.000146}
   m_Center: {x: 0, y: 1.0027587, z: -1.499927}
+--- !u!205 &8058797139941035596
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993119983977949264}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 1.0027587, z: 0}
+  m_Size: 6
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8497650616581704069}
+  m_Enabled: 1

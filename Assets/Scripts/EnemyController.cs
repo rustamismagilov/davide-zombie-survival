@@ -5,7 +5,6 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] float chaseRange = 10f;
     [SerializeField] float turnSpeed = 5f;
-    [SerializeField] float stuckAfterDamageTime = 0.25f;
 
     Transform target;
 

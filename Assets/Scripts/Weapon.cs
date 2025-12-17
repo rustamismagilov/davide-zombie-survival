@@ -205,22 +205,19 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(cinemachineCamera.transform.position, cinemachineCamera.transform.forward, out hit, range))
         {
-            //Debug.Log("Hit this thing: " + hit.transform.name);
-
             // if i hit something
             CreateHitImpact(hit);
 
             // if rigidbody 
             if (hit.rigidbody != null)
             {
-                Debug.Log("ci");
                 Vector3 forceDirection = cinemachineCamera.transform.forward;
                 hit.rigidbody.AddForce(forceDirection * impulseForce, ForceMode.Impulse);
             }
 
             // if has helth
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
-            if (target != null)
+            if (target != null && !target.IsDead)
             {
                 if (showHitCoroutine != null) StopCoroutine(showHitCoroutine);
                 showHitCoroutine = StartCoroutine(ShowHit());

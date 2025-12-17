@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,16 +10,14 @@ public class Spawner : MonoBehaviour
     [Header("Interactions")]
     [SerializeField] List<GameObject> interactionList;
     [SerializeField] GameObject interactionContainer;
-    [SerializeField] float interactionStartFrequency = 5f;
-    [SerializeField] float interactionIncrementFrequency = 1f;
+    [SerializeField] float interactionFrequency = 1f;
     [SerializeField] int interactionLimit = 100;
 
     [Header("Enemies")]
     [SerializeField] List<GameObject> enemyList;
     [SerializeField] GameObject enemyContainer;
-    [SerializeField] float enemyStartFrequency = 10f;
-    [SerializeField] float enemyIncrementFrequency = 1f;
-    [SerializeField] int enemyLimit = 100;
+    [SerializeField] float enemyFrequency = 1f;
+    [SerializeField] int enemyLimit = 1000;
 
 
     void Start()
@@ -30,7 +29,7 @@ public class Spawner : MonoBehaviour
     // INTERACTIONS
     IEnumerator SpawnInteractions()
     {
-        float delay = interactionStartFrequency;
+        float delay = interactionFrequency;
 
         while (true)
         {
@@ -38,19 +37,17 @@ public class Spawner : MonoBehaviour
 
             if (count < interactionLimit)
             {
-                SpawnObject(interactionList, interactionContainer, true);
+                SpawnObject(interactionList, interactionContainer, true, false);
             }
 
             yield return new WaitForSeconds(delay);
-
-            delay = Mathf.Max(0.1f, delay - interactionIncrementFrequency);
         }
     }
 
     // ENEMIES
     IEnumerator SpawnEnemies()
     {
-        float delay = enemyStartFrequency;
+        float delay = enemyFrequency;
 
         while (true)
         {
@@ -58,42 +55,63 @@ public class Spawner : MonoBehaviour
 
             if (count < enemyLimit)
             {
-                SpawnObject(enemyList, enemyContainer, false);
+                SpawnObject(enemyList, enemyContainer, false, true);
             }
 
             yield return new WaitForSeconds(delay);
-
-            delay = Mathf.Max(0.1f, delay - enemyIncrementFrequency);
         }
     }
 
-    // SPAWN OBJECT
-    void SpawnObject(List<GameObject> list, GameObject parent, bool alignToTerrain)
+    // SPAWN RANDOM OBJECT
+    void SpawnObject(
+        List<GameObject> list,
+        GameObject parent,
+        bool alignToTerrain,
+        bool requireNavMesh
+    )
     {
         if (list.Count == 0) return;
 
         GameObject prefab = list[Random.Range(0, list.Count)];
-
         TerrainData td = terrain.terrainData;
 
-        // position
-        float x = Random.Range(0f, td.size.x);
-        float z = Random.Range(0f, td.size.z);
-        float height = td.GetInterpolatedHeight(x / td.size.x, z / td.size.z);
-        Vector3 pos = new Vector3(x, height, z) + terrain.transform.position;
+        const int maxAttempts = 30; // AVOID LOOP
 
-        Quaternion rot = Quaternion.identity;
-
-        // rotation
-        if (alignToTerrain)
+        for (int i = 0; i < maxAttempts; i++)
         {
-            float normX = x / td.size.x;
-            float normZ = z / td.size.z;
-            Vector3 normal = td.GetInterpolatedNormal(normX, normZ);
-            rot = Quaternion.FromToRotation(Vector3.up, normal);
+            // random terrain position
+            float x = Random.Range(0f, td.size.x);
+            float z = Random.Range(0f, td.size.z);
+            float height = td.GetInterpolatedHeight(x / td.size.x, z / td.size.z);
+
+            Vector3 terrainPos = new Vector3(x, height, z) + terrain.transform.position;
+            Vector3 spawnPos = terrainPos;
+
+            Quaternion rot = Quaternion.identity;
+
+            // NavMesh check
+            if (requireNavMesh)
+            {
+                if (!NavMesh.SamplePosition(terrainPos, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+                    continue; // try another point
+
+                spawnPos = hit.position;
+            }
+
+
+            // terrain alignment
+            if (alignToTerrain)
+            {
+                float normX = x / td.size.x;
+                float normZ = z / td.size.z;
+                Vector3 normal = td.GetInterpolatedNormal(normX, normZ);
+                rot = Quaternion.FromToRotation(Vector3.up, normal);
+            }
+
+            Instantiate(prefab, spawnPos, rot, parent.transform);
+            return;
         }
 
-        // insta
-        Instantiate(prefab, pos, rot, parent.transform);
+        Debug.LogWarning("Failed to find valid spawn position.");
     }
 }

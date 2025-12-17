@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7434700843145806024}
   - component: {fileID: 4668449746184057858}
   - component: {fileID: -1474701121970041861}
+  - component: {fileID: -5083360910326780133}
   m_Layer: 0
   m_Name: tiled rock
   m_TagString: Untagged
@@ -109,3 +110,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 361572162773699789, guid: e9b0ee5b26497ca4b880f5d25a3cb5de, type: 3}
+--- !u!205 &-5083360910326780133
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613912358295147991}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.06997126, y: 0.73033416, z: 0.0024347305}
+  m_Size: 1.8039228
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4668449746184057858}
+  m_Enabled: 1

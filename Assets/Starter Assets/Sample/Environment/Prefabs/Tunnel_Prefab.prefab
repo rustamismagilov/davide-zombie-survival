@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4985949235297978144}
   - component: {fileID: 8456313914433245678}
   - component: {fileID: 1138964657491743937}
+  - component: {fileID: 2707712029971541626}
   m_Layer: 0
   m_Name: Tunnel_Prefab
   m_TagString: Untagged
@@ -61,6 +62,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -149,3 +153,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.26525307, y: 6.0000024, z: 2.256102}
   m_Center: {x: 1.1187105, y: 1.893427e-15, z: 1.1332378}
+--- !u!205 &2707712029971541626
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604908963751126680}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 1.257599}
+  m_Size: 6.000001
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 956227959320364877}
+  m_Enabled: 1

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7040418992769035754}
   - component: {fileID: 5066655736411035936}
   - component: {fileID: -4688278622130865867}
+  - component: {fileID: 2742900655989817149}
   m_Layer: 0
   m_Name: hut
   m_TagString: Untagged
@@ -113,3 +114,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -908298366693926071, guid: e9f4d516649a10545809b443df5c825c, type: 3}
+--- !u!205 &2742900655989817149
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724046851711318261}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.040721416, y: 1.0682429, z: -0.030238152}
+  m_Size: 2.6953292
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5066655736411035936}
+  m_Enabled: 1

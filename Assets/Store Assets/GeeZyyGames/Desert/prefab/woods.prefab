@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 219929087884062713}
   - component: {fileID: 2659849602568166195}
   - component: {fileID: 2372709697338459812}
+  - component: {fileID: -7335808274588900832}
   m_Layer: 0
   m_Name: woods
   m_TagString: Untagged
@@ -109,3 +110,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5291867083314945008, guid: 4e2b1678ffc72af409206f0c3fab9403, type: 3}
+--- !u!205 &-7335808274588900832
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605303829291186918}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0017128587, y: 0.07143992, z: -0.0025311708}
+  m_Size: 0.6323321
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2659849602568166195}
+  m_Enabled: 1

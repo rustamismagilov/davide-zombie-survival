@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5133274882688487605}
   - component: {fileID: 6978882906433643647}
   - component: {fileID: 894093325933845257}
+  - component: {fileID: -5282976700312082028}
   m_Layer: 0
   m_Name: Ramp_Prefab
   m_TagString: Untagged
@@ -59,6 +60,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -106,3 +110,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8512782951310809723, guid: 426a2785f8a940049aac2c246661cf09, type: 3}
+--- !u!205 &-5282976700312082028
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924170145835402666}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.000012874603, y: 0.1508685, z: -0.00001335144}
+  m_Size: 10.250036
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6978882906433643647}
+  m_Enabled: 1
