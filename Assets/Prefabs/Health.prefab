@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 5195468923487604193}
   - component: {fileID: 4663547481076920961}
   - component: {fileID: 4933196580448012703}
+  - component: {fileID: 9041642292683971683}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -177,3 +178,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverHealth: 30
+--- !u!205 &9041642292683971683
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7738517767217366572}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0034129918, y: 0.0800158, z: 0.0012921244}
+  m_Size: 0.4077417
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2685850986874230723}
+  m_Enabled: 1

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2455953313800892172}
   - component: {fileID: 7566490019622391792}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 5730868372765793259}
   - component: {fileID: 1985193559600384796}
   - component: {fileID: 5533272778084404919}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canned Food Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7842082045857856591}
   - component: {fileID: 5818943820659887423}
   - component: {fileID: 170765919232934346}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canned_Food_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5533272778084404919}

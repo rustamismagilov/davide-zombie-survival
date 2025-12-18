@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64608002684097730}
   - component: {fileID: -8113790994798046070}
   - component: {fileID: 625752374712375632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

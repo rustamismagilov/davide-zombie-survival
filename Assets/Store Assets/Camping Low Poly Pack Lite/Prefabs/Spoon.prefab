@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 706180463294014834}
   - component: {fileID: 5586885413044100618}
   - component: {fileID: 5924165367768968258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 594874224653582058}
   - component: {fileID: 1607531637367724967}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6358551575744143354}
   - component: {fileID: 5556352747188129942}
   - component: {fileID: 5266869002241266399}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5924165367768968258}

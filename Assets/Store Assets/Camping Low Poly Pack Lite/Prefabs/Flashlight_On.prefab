@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6866330167428114231}
   - component: {fileID: 1883771075158104613}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 4764365532196611777}
   - component: {fileID: 7105765570181775062}
   - component: {fileID: 9020721238571290824}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flashlight_On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8296314119655459058}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 669839208425455499}
   - component: {fileID: 7716229497006774734}
   - component: {fileID: 3859367233018388614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 3493914756194126432}
   - component: {fileID: 4399500970179840656}
   - component: {fileID: 8296314119655459058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

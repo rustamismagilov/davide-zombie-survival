@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518677509498270417}
   - component: {fileID: 1731270573714931435}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 8226062577347205947}
   - component: {fileID: 163050346148316801}
   - component: {fileID: 4535782300235838174}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6259166575272691005}
   - component: {fileID: 7735695542810390817}
   - component: {fileID: -8277809974296769086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4535782300235838174}

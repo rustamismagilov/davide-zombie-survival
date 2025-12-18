@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4680046019456082586}
   - component: {fileID: 5746825749176837014}
   - component: {fileID: 8326127135881337245}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Compass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9181111457519896171}
   - component: {fileID: 5638866671829837146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8297673083270730813}
   - component: {fileID: 3856491665137516021}
   - component: {fileID: 7684657020171357773}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Compass Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 2926139353316401390}
   - component: {fileID: 8615550889688073899}
   - component: {fileID: 274850985219657760}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Compass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8326127135881337245}

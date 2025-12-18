@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7105765570181775062, guid: 66e773e0b7b716649b6ed89ad51b2058, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8296314119655459058, guid: 66e773e0b7b716649b6ed89ad51b2058, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 

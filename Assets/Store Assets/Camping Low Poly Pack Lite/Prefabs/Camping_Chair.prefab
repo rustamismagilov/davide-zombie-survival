@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1218623327044545381}
   - component: {fileID: 3371979176333299338}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2210823501453784364}
   - component: {fileID: 7957466496953777935}
-  m_Layer: 0
+  - component: {fileID: -3341633259435044501}
+  m_Layer: 10
   m_Name: Camping_Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,11 +103,38 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5642752489890806}
   m_Enabled: 1
+--- !u!54 &-3341633259435044501
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755737138760580469}
+  serializedVersion: 5
+  m_Mass: 20
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &9211108482754004640
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +146,7 @@ GameObject:
   - component: {fileID: 1525875964477181268}
   - component: {fileID: 3243220349525229183}
   - component: {fileID: 5642752489890806}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camping Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,6 +193,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64759970702908276}
   - component: {fileID: 2482070852743757234}
   - component: {fileID: -4306172234979324155}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

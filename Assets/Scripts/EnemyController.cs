@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,6 +6,9 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] float chaseRange = 10f;
     [SerializeField] float turnSpeed = 5f;
+
+    [SerializeField] float roamRadius = 10f;
+    [SerializeField] float waitTime = 2f;
 
     Transform target;
 
@@ -15,6 +19,8 @@ public class EnemyController : MonoBehaviour
 
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+
+    float waitTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +35,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check dead
         if (enemyHealth.IsDead)
         {
             enabled = false;
@@ -37,15 +44,20 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        // check distance
         distanceToTarget = Vector3.Distance(target.position, transform.position);
+        if (!isProvoked && distanceToTarget <= chaseRange)
+        {
+            isProvoked = true;
+        }
 
         if (isProvoked)
         {
             EngageTarget();
         }
-        if (distanceToTarget <= chaseRange)
+        else
         {
-            isProvoked = true;
+            MoveRandomly();
         }
     }
 
@@ -59,8 +71,38 @@ public class EnemyController : MonoBehaviour
     {
         isProvoked = true;
 
-        animator.ResetTrigger("Hit");
-        animator.SetTrigger("Hit");
+        // animate hit just from walking
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk")) 
+        {
+            animator.SetTrigger("Hit");
+        }
+    }
+
+    void MoveRandomly()
+    {
+        CheckVelocity();
+
+        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            waitTimer += Time.deltaTime;
+
+            if (waitTimer >= waitTime)
+            {
+                MoveToRandomPoint();
+
+                waitTimer = 0f;
+            }
+        }
+    }
+
+    void MoveToRandomPoint()
+    {
+        Vector3 randomPos = Random.insideUnitSphere * roamRadius + transform.position;
+
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, roamRadius, NavMesh.AllAreas))
+        {
+            navMeshAgent.SetDestination(hit.position);
+        }
     }
 
     void EngageTarget()
@@ -88,7 +130,6 @@ public class EnemyController : MonoBehaviour
     void AttackTarget()
     {
         animator.SetTrigger("Attack");
-        //Debug.Log(name + " has seeked and is destroying " + target.name);
     }
 
     void FaceTarget()

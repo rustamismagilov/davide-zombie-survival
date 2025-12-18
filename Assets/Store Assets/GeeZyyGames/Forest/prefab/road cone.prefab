@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -212482643013686093}
   - component: {fileID: 5185151776125956930}
   - component: {fileID: -1639382825863676204}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: road cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
