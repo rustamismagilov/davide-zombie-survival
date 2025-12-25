@@ -107,7 +107,6 @@ public class EnemyController : MonoBehaviour
 
     void EngageTarget()
     {
-        FaceTarget();
         CheckVelocity();
 
         if (distanceToTarget >= navMeshAgent.stoppingDistance)
@@ -117,6 +116,7 @@ public class EnemyController : MonoBehaviour
 
         if (distanceToTarget <= navMeshAgent.stoppingDistance)
         {
+            FaceTarget();
             AttackTarget();
         }
     }
